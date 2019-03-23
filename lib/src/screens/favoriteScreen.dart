@@ -20,11 +20,8 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
         stream: _bloc.newsModelFavStream,
         builder: (context,snapshot){
           if(snapshot.hasData){
-            return ListView.separated(
+            return ListView.builder(
                 itemCount: snapshot.data.length,
-                separatorBuilder: (context,index){
-                  return Divider(color: Colors.black87);
-                },
                 itemBuilder: (context, index) {
                   return Container(
                       child: NewsArticle(news: snapshot.data[index],favorite: true));
