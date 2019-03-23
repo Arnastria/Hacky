@@ -10,7 +10,6 @@ Future<List<int>> fetchTopStoriesID()async{
   for(var i in jsonDecode(response.body)){
     responseList.add(i);
   }
-  print(responseList);
   return responseList.toList();
 }
 
