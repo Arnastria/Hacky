@@ -21,6 +21,9 @@ class _MainScreenState extends State<MainScreen> {
           stream: _bloc.newsModelStream,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
+              if(snapshot.data.length == 0){
+                return CircularProgressIndicator();
+              }
               return ListView.builder(
                   controller: _scrollController,
                   itemCount: snapshot.data.length,
