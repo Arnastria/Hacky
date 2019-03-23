@@ -21,7 +21,7 @@ class _NewsArticleState extends State<NewsArticle> {
   _NewsArticleState({this.news, this.favorite});
   Icon _favorite_off = Icon(Icons.favorite_border);
   Icon _favorite_on = Icon(Icons.favorite, color: Colors.red);
-  TextStyle titleStyle = TextStyle(fontSize: 16);
+  TextStyle titleStyle = TextStyle(fontSize: 19);
   TextStyle subStyle = TextStyle(color: Colors.black38);
 
   @override

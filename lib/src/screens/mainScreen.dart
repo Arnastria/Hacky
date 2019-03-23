@@ -27,9 +27,6 @@ class _MainScreenState extends State<MainScreen> {
               return ListView.builder(
                   controller: _scrollController,
                   itemCount: snapshot.data.length,
-//                  separatorBuilder: (context,index){
-//                    return Divider(color: Colors.black87);
-//                  },
                   itemBuilder: (context, index) {
                     if(index == snapshot.data.length-1){
                       _bloc.updateNews(index);
