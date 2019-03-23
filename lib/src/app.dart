@@ -4,16 +4,17 @@ import 'package:hacky/src/blocs/newsBloc.dart';
 import 'package:hacky/src/blocs/provider.dart';
 import 'package:hacky/src/navigator.dart';
 
-class MyApp extends StatefulWidget{
+class MyApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     return MyAppState();
   }
 }
 
-class MyAppState extends State<MyApp>{
+class MyAppState extends State<MyApp> {
   final _bloc = NewsBloc();
-  final GlobalKey<NavigatorState> _navigatorKey = new GlobalKey<NavigatorState>();
+  final GlobalKey<NavigatorState> _navigatorKey =
+      new GlobalKey<NavigatorState>();
 
   @override
   Widget build(BuildContext context) {
