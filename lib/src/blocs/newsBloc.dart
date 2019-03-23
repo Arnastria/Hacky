@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:rxdart/rxdart.dart';
 import 'package:hacky/src/services/hackyService.dart';
+import 'package:hacky/src/models/newsModel.dart';
 
 class NewsBloc {
   Map<int,bool> _favoriteMap = Map();
@@ -17,7 +18,7 @@ class NewsBloc {
   Stream<List<NewsModel>> get newsModelFavStream => _newsModelFavSubject.stream;
   List<NewsModel> get newsModelFavValue => _newsModelFavSubject.value;
 
-  void addFavNews(NewsModel news){
+  void selectFavNews(NewsModel news){
     toggleFav(news.id);
     List<NewsModel> newList = newsModelFavValue;
     if(favoriteMap[news.id]){
@@ -26,7 +27,6 @@ class NewsBloc {
       newList.remove(news);
     }
     _newsModelFavSubject.sink.add(newList);
-    print(_newsModelFavSubject.value);
   }
 
 
@@ -37,6 +37,7 @@ class NewsBloc {
        return fetchNewsData(i);
      });
      var finished = await Future.wait(futureNews);
+     finished.sort((a,b)=>a.compareTo(b));
      addFavListNews(List<NewsModel>());
      addNews(finished);
   }

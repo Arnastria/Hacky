@@ -1,15 +1,8 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:hacky/src/models/newsModel.dart';
 
 String base = "https://hacker-news.firebaseio.com/v0";
-
-class NewsModel{
-  int id;
-  String title;
-  String author;
-  DateTime time;
-  NewsModel({this.id, this.title, this.author, this.time});
-}
 
 Future<List<int>> fetchTopStoriesID()async{
   final response = await http.get('$base/topstories.json');
@@ -32,7 +25,7 @@ Future<NewsModel> fetchNewsData(int id) async{
     id: id,
     title: title,
     author: author,
-    time: time
+    dateTime: time
   );
 }
 

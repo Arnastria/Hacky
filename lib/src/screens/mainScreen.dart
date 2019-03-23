@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hacky/src/screens/favoriteScreen.dart';
-import 'package:hacky/src/services/hackyService.dart';
+import 'package:hacky/src/models/newsModel.dart';
 import 'package:hacky/src/screens/newsArticle.dart';
 import 'package:hacky/src/blocs/newsBloc.dart';
 import 'package:hacky/src/blocs/provider.dart';
@@ -20,14 +20,17 @@ class _MainScreenState extends State<MainScreen> {
           stream: _bloc.newsModelStream,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return ListView.builder(
+              return ListView.separated(
                   itemCount: snapshot.data.length,
+                  separatorBuilder: (context,index){
+                    return Divider(color: Colors.black87);
+                  },
                   itemBuilder: (context, index) {
                     return Container(
-                      child: NewsArticle(news: snapshot.data[index]));
+                      child: NewsArticle(news: snapshot.data[index],favorite: false));
                   });
             }
-            return Center(child: LinearProgressIndicator());
+            return Center(child: CircularProgressIndicator());
           });
     }
 
@@ -35,7 +38,7 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Hacky"),
+        title: Text("Hacker News"),
         actions: <Widget>[
           IconButton(icon: Icon(Icons.favorite), onPressed: () {
             Navigator.of(context).push(MaterialPageRoute(builder: (context){
